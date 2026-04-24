@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מרכז שליטה</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    display: flex;
+    background: #0f172a;
+    color: white;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: #020617;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.sidebar h2 {
+    margin-bottom: 20px;
+}
+
+.sidebar button {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    background: #1e293b;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.sidebar button:hover {
+    background: #334155;
+}
+
+/* Main */
+.main {
+    flex: 1;
+    padding: 20px;
+}
+
+.search {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: none;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.card {
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+.card a {
+    display: inline-block;
+    margin-top: 10px;
+    background: #3b82f6;
+    padding: 8px 12px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.toggle {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    padding: 10px;
+    cursor: pointer;
+    background: white;
+    color: black;
+    border-radius: 5px;
+}
+
+.light {
+    background: #f1f5f9;
+    color: black;
+}
+
+.light .sidebar {
+    background: #e2e8f0;
+}
+
+.light .card {
+    background: white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h2>קטגוריות</h2>
+    <button onclick="filterCategory('all')">הכל</button>
+    <button onclick="filterCategory('projects')">פרויקטים</button>
+    <button onclick="filterCategory('learning')">למידה</button>
+</div>
+
+<div class="main">
+    <input type="text" class="search" placeholder="חפש דף..." onkeyup="searchPages()">
+    <div class="grid" id="grid"></div>
+</div>
+
+<div class="toggle" onclick="toggleTheme()">🌙</div>
+
+<script>
+const pages = [
+    {title: "ניהול פרויקטים", desc: "איך מנהלים פרויקטים, לוח זמנים, מחקר וביצוע", link: "project_management_website.html", category: "learning"},
+    {title: "Pegboard", desc: "בניית לוח יתדות", link: "pegboard.html", category: "projects"},
+    {title: "HTML בסיס", desc: "לימוד HTML", link: "html.html", category: "learning"}
+];
+
+function displayPages(list) {
+    const grid = document.getElementById("grid");
+    grid.innerHTML = "";
+
+    list.forEach(p => {
+        grid.innerHTML += `
+        <div class="card">
+            <h3>${p.title}</h3>
+            <p>${p.desc}</p>
+            <a href="${p.link}">כניסה</a>
+        </div>`;
+    });
+}
+
+function searchPages() {
+    const value = document.querySelector(".search").value.toLowerCase();
+    const filtered = pages.filter(p => p.title.toLowerCase().includes(value));
+    displayPages(filtered);
+}
+
+function filterCategory(cat) {
+    if(cat === 'all') return displayPages(pages);
+    const filtered = pages.filter(p => p.category === cat);
+    displayPages(filtered);
+}
+
+function toggleTheme() {
+    document.body.classList.toggle("light");
+}
+
+displayPages(pages);
+</script>
+
+</body>
+</html>

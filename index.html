@@ -114,8 +114,10 @@ body {
 <div class="sidebar">
     <h2>קטגוריות</h2>
     <button onclick="filterCategory('all')">הכל</button>
-    <button onclick="filterCategory('projects')">פרויקטים</button>
     <button onclick="filterCategory('learning')">למידה</button>
+    <button onclick="filterCategory('woodwork')">נגרות</button>
+    <button onclick="filterCategory('projects')">פרויקטים</button>
+    <button onclick="filterCategory('CNC')">CNC</button>
 </div>
 
 <div class="main">
@@ -129,8 +131,8 @@ body {
 const pages = [
     {title: "ניהול פרויקטים", desc: "איך מנהלים פרויקטים, לוח זמנים, מחקר וביצוע", link: "project_management_website.html", category: "learning"},
     {title: "מדעי התודעה", desc: "לימוד מדעי התודעה ואיך התודעה עובדת", link: "consciousness.html", category: "learning"},
-    {title: "לוח יתדות", desc: "שרטוט ותהליכים לבניית לוח יתדות", link: "projects/pegboard.html", category: "projects"},
-    {title: "שידת מיטה", desc: "שרטוט ותהליכים לבניית שידת מיטה", link: "projects/bedside-table.html", category: "projects"}
+    {title: "לוח יתדות", desc: "שרטוט ותהליכים לבניית לוח יתדות", link: "projects/pegboard.html", category: "woodwork"},
+    {title: "שידת מיטה", desc: "שרטוט ותהליכים לבניית שידת מיטה", link: "projects/bedside-table.html", category: "woodwork"}
 ];
 
 function displayPages(list) {
